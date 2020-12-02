@@ -1,9 +1,16 @@
 :root {
     --space: 2rem;
+    --color-bg: whitesmoke;
 }
 
 html {
     font-size: 16px;
+    line-height: 1.6;
+    font-family: serif;
+}
+
+body {
+    margin: 0;
 }
 
 form {
@@ -15,12 +22,28 @@ form input {
     margin-bottom: calc(var(--space) / 2);
 }
 
-stellar-account-transations header,
+/* css only custom elements */
+site-container {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space);
+}
+
+/* web-components custom elements */
+stellar-account-transactions,
+stellar-account-send {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg);
+    padding: calc(var(--space) / 4);
+}
+
+stellar-account-transactions header,
 stellar-account-send header {
     padding-bottom: calc(var(--space) / 2);
     font-style: italic;
 }
 
-stellar-account-transations article {
+stellar-account-transactions article {
     margin-bottom: calc(var(--space) / 2);
 }

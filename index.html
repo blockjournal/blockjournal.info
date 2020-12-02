@@ -8,25 +8,28 @@
   </head>
 
   <body>
-      <header>
-	  <h1>Stellar lumens wall</h1>
-	  <p>Send a message on the stellar lumens blockchain</p>
-      </header>
+      <site-container>
+	  <header>
+	      <h1>Stellar lumens wall</h1>
+	      <p>Send a message on the stellar lumens blockchain.</p>
+	      <p>This test is using the test-net network, <a href="https://gitlab.com/hugurp/stellar-wall">you can create and add fund for free to an account</a>, in order to test this app.</p>
+	  </header>
 
-      <main>
-	  <h2>Send to account</h2>
-	  <stellar-account-send
-	      dev="true"
-	      amount="0.1"
-	      account-destination="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
-	  ></stellar-account-send>
+	  <main>
+	      <h2>Send to account</h2>
+	      <stellar-account-send
+		  dev="true"
+		  amount="0.1"
+		  account-destination="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
+	      ></stellar-account-send>
 
-	  <h2>Transactions on account</h2>
-	  <stellar-account-transations
-	      dev="true"
-	      account="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
-	  ></stellar-account-transations>
-      </main>
+	      <h2>Transactions on account</h2>
+	      <stellar-account-transactions
+		  dev="true"
+		  account="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
+	      ></stellar-account-transactions>
+	  </main>
+      </site-container>
   </body>
  
   <script src="https://unpkg.com/stellar-sdk@latest/dist/stellar-sdk.js"></script>
