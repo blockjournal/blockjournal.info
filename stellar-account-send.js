@@ -100,7 +100,7 @@ class StellarAccountSend extends HTMLElement {
 	this.innerHTML = ''
 
 	const $header = document.createElement('header')
-	$header.innerHTML = `Send ${this.amount} stellar lumens to account ID: ${this.accountDestination}`
+	$header.innerHTML = `Send ${this.amount} stellar lumens to account ID: <code>${this.accountDestination}</code>`
 	
 	const $form = document.createElement('form')
 	$form.addEventListener('submit', event => {

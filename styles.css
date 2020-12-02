@@ -1,5 +1,6 @@
 :root {
     --space: 2rem;
+    --site-width: calc(var(--space) * 30);
     --color-bg: whitesmoke;
 }
 
@@ -13,13 +14,11 @@ body {
     margin: 0;
 }
 
-form {
+body {
     display: flex;
     flex-direction: column;
-}
-
-form input {
-    margin-bottom: calc(var(--space) / 2);
+    justify-content: center;
+    align-items: center;
 }
 
 /* css only custom elements */
@@ -27,6 +26,7 @@ site-container {
     display: flex;
     flex-direction: column;
     padding: var(--space);
+    max-width: var(--site-width);
 }
 
 /* web-components custom elements */
@@ -44,6 +44,20 @@ stellar-account-send header {
     font-style: italic;
 }
 
+stellar-account-transactions code,
+stellar-account-send code {
+    word-break: break-all;
+}
+
 stellar-account-transactions article {
+    margin-bottom: calc(var(--space) / 2);
+}
+
+stellar-account-send form {
+    display: flex;
+    flex-direction: column;
+}
+
+stellar-account-send input {
     margin-bottom: calc(var(--space) / 2);
 }

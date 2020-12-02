@@ -39,13 +39,13 @@ export default class StellarAccountTransations extends HTMLElement {
 	this.innerHTML = ''
 
 	const $header = document.createElement('header')
-	$header.innerHTML = `Listing last transactions for: ${this.account}`
+	$header.innerHTML = `Listing last transactions for: <code>${this.account}</code>`
 
 	this.appendChild($header)
 
 	const $transactions = transactions.forEach(transaction => {
 	    let $transaction = document.createElement('article')
-	    $transaction.innerText = transaction.id
+	    $transaction.innerHTML = `<code>${transaction.id}</code>`
 	    this.appendChild($transaction)
 	})
 	
