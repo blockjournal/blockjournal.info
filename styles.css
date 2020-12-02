@@ -1,6 +1,7 @@
 :root {
     --space: 2rem;
     --site-width: calc(var(--space) * 30);
+    --site-header-width: calc(var(--space) * 20);
     --color-bg: whitesmoke;
     --color-cite: orange;
 }
@@ -55,12 +56,24 @@ button {
     cursor: pointer;
 }
 
-/* css only custom elements */
-site-container {
+.Site {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: var(--space);
     max-width: var(--site-width);
+}
+
+.Site-header {
+    max-width: var(--site-header-width);
+    margin-bottom: 2rem;
+}
+.Site-header h1 {
+    text-align: center;
+}
+
+.Site-main {
+    width: 100%;
 }
 
 /* web-components custom elements */

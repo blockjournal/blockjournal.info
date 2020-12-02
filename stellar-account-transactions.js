@@ -43,11 +43,19 @@ export default class StellarAccountTransations extends HTMLElement {
 
 	this.appendChild($header)
 
-	const $transactions = transactions.forEach(transaction => {
-	    let $transaction = document.createElement('article')
-	    $transaction.innerHTML = `<cite>${transaction.memo || ''}</cite><code>${transaction.memo ? '' : transaction.id}</code>`
-	    this.appendChild($transaction)
-	})
+	const $transactions = transactions
+	    .sort((a, b) => {
+		return new Date(b.created_at) - new Date(a.created_at);
+	    })
+	    .forEach(transaction => {
+		let $transaction = document.createElement('article')
+		$transaction.innerHTML = `
+		    <cite>${transaction.memo || ''}</cite>
+		    <code>${transaction.id}</code>
+		    <date>${transaction.created_at}</date>
+		`
+		this.appendChild($transaction)
+	    })
 	
     }
 }
