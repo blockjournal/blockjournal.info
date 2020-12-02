@@ -12,7 +12,8 @@ class StellarAccountSend extends HTMLElement {
     handleSubmit = async () => {
 	let data  = {
 	    account: this.account,
-	    secret: this.secret
+	    secret: this.secret,
+	    memo: this.memo
 	}
 	this.prepareTransaction(data)
 	this.createTransaction()
@@ -67,7 +68,7 @@ class StellarAccountSend extends HTMLElement {
 	// Make this transaction valid for the next 30 seconds only
 					  .setTimeout(30)
 	// Uncomment to add a memo (https://www.stellar.org/developers/guides/concepts/transactions.html)
-	// .addMemo(StellarSdk.Memo.text('Hello world!'))
+					  .addMemo(StellarSdk.Memo.text(this.memo))
 					  .build();
 
 	// Sign this transaction with the secret key
@@ -122,6 +123,12 @@ class StellarAccountSend extends HTMLElement {
 	$inputSecret.placeholder = 'Sender Account Secret'
 	$inputSecret.required = true
 
+	const $inputMemo = document.createElement('textarea')
+	$inputMemo.name = 'memo'
+	$inputMemo.oninput = this.handleInputChange
+	$inputMemo.placeholder = 'Memo, your public message'
+	$inputMemo.required = true
+
 	const $submitButton = document.createElement('button')
 	$submitButton.innerHTML = 'Send payment & post message'
 	$submitButton.type = 'submit'
@@ -129,6 +136,7 @@ class StellarAccountSend extends HTMLElement {
 
 	$form.appendChild($inputAccount)
 	$form.appendChild($inputSecret)
+	$form.appendChild($inputMemo)
 	$form.appendChild($submitButton)
 	this.appendChild($header)
 	this.appendChild($form)

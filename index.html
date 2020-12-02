@@ -16,18 +16,26 @@
 	  </header>
 
 	  <main>
-	      <h2>Send to account</h2>
-	      <stellar-account-send
-		  dev="true"
-		  amount="0.1"
-		  account-destination="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
-	      ></stellar-account-send>
+	      <section>
+		  <details>
+		      <summary>
+			  <button>Publish a message on the wall</button>
+		      </summary>
+		      <stellar-account-send
+			  dev="true"
+			  amount="0.1"
+			  account-destination="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
+		      ></stellar-account-send>
+		  </details>
+	      </section>
 
-	      <h2>Transactions on account</h2>
-	      <stellar-account-transactions
-		  dev="true"
-		  account="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
-	      ></stellar-account-transactions>
+	      <section>
+		  <h2>Transactions on account</h2>
+		  <stellar-account-transactions
+		      dev="true"
+		      account="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
+		  ></stellar-account-transactions>
+	      </section>
 	  </main>
       </site-container>
   </body>

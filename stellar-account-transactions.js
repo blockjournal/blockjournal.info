@@ -45,7 +45,7 @@ export default class StellarAccountTransations extends HTMLElement {
 
 	const $transactions = transactions.forEach(transaction => {
 	    let $transaction = document.createElement('article')
-	    $transaction.innerHTML = `<code>${transaction.id}</code>`
+	    $transaction.innerHTML = `<cite>${transaction.memo || ''}</cite><code>${transaction.memo ? '' : transaction.id}</code>`
 	    this.appendChild($transaction)
 	})
 	

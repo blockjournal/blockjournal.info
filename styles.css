@@ -2,6 +2,7 @@
     --space: 2rem;
     --site-width: calc(var(--space) * 30);
     --color-bg: whitesmoke;
+    --color-cite: orange;
 }
 
 html {
@@ -31,8 +32,27 @@ body {
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+}
+
+section {
+    margin-bottom: var(--space);
+}
+
+summary {
+    margin-bottom: calc(var(--space) / 2);
+    cursor: pointer;
+}
+summary button {
+    pointer-events: none;
+}
+
+details[open] summary {
+    display: none;
+}
+
+button {
+    cursor: pointer;
 }
 
 /* css only custom elements */
@@ -63,6 +83,16 @@ stellar-account-send code {
     word-break: break-all;
 }
 
+stellar-account-transactions cite,
+stellar-account-send cite {
+    background-color: var(--color-cite);
+}
+
+stellar-account-transactions code + cite,
+stellar-account-send code + cite {
+    padding-right: calc(var(--space) / 2);
+}
+
 stellar-account-transactions article {
     margin-bottom: calc(var(--space) / 2);
 }
@@ -72,6 +102,10 @@ stellar-account-send form {
     flex-direction: column;
 }
 
-stellar-account-send input {
+stellar-account-send input,
+stellar-account-send textarea {
     margin-bottom: calc(var(--space) / 2);
+    padding: calc(var(--space) / 4);
+    font-size: 1rem;
+    font-weight: normal;
 }
