@@ -33,7 +33,7 @@ class StellarAccountSend extends HTMLElement {
 	this.receiverPublicKey = this.accountDestination
 
 	let serverUrl
-	this.getAttribute('dev') ? (
+	this.getAttribute('testnet') ? (
 	    serverUrl = 'https://horizon-testnet.stellar.org'
 	) : (
 	    serverUrl = 'https://horizon.stellar.org'
@@ -97,6 +97,9 @@ class StellarAccountSend extends HTMLElement {
 	this[input.target.name] = input.target.value
     }
 
+    renderLoading() {
+	this.innerHTML = ''
+    }
     render() {
 	this.innerHTML = ''
 

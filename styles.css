@@ -41,13 +41,14 @@ section {
 }
 
 summary {
+    display: flex;
+    justify-content: center;
     margin-bottom: calc(var(--space) / 2);
     cursor: pointer;
 }
 summary button {
     pointer-events: none;
 }
-
 details[open] summary {
     display: none;
 }
@@ -81,7 +82,7 @@ stellar-account-transactions,
 stellar-account-send {
     display: flex;
     flex-direction: column;
-    background-color: var(--color-bg);
+    /* background-color: var(--color-bg); */
     padding: calc(var(--space) / 4);
 }
 
@@ -91,23 +92,35 @@ stellar-account-send header {
     font-style: italic;
 }
 
+stellar-account-transactions header {
+    text-align: right;
+    cursor: help;
+}
+
 stellar-account-transactions code,
 stellar-account-send code {
-    word-break: break-all;
+    max-width: calc(var(--space) * 4);
+    word-break: break-word;
 }
 
 stellar-account-transactions cite,
 stellar-account-send cite {
+    display: inline-block;
     background-color: var(--color-cite);
+    padding: calc(var(--space) / 5);
 }
 
 stellar-account-transactions code + cite,
-stellar-account-send code + cite {
-    padding-right: calc(var(--space) / 2);
+stellar-account-send code + cite,
+stellar-account-transactions cite + date,
+stellar-account-send cite + date {
+    padding-right: calc(var(--space) / 3);
 }
 
 stellar-account-transactions article {
     margin-bottom: calc(var(--space) / 2);
+    display: flex;
+    justify-content: center;
 }
 
 stellar-account-send form {

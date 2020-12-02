@@ -9,7 +9,7 @@ export default class StellarAccountTransations extends HTMLElement {
 	this.account = this.getAttribute('account') || ''
 
 	let serverUrl
-	this.getAttribute('dev') ? (
+	this.getAttribute('testnet') ? (
 	    serverUrl = 'https://horizon-testnet.stellar.org'
 	) : (
 	    serverUrl = 'https://horizon.stellar.org'
@@ -39,7 +39,8 @@ export default class StellarAccountTransations extends HTMLElement {
 	this.innerHTML = ''
 
 	const $header = document.createElement('header')
-	$header.innerHTML = `Listing last transactions for: <code>${this.account}</code>`
+	$header.innerHTML = `(wall)`
+	$header.title = `Showing transaction messages for Stellar Lumens account ID: ${this.account}`
 
 	this.appendChild($header)
 
@@ -47,12 +48,17 @@ export default class StellarAccountTransations extends HTMLElement {
 	    .sort((a, b) => {
 		return new Date(b.created_at) - new Date(a.created_at);
 	    })
+	    .filter(transaction => {
+		return transaction.memo
+	    })
 	    .forEach(transaction => {
 		let $transaction = document.createElement('article')
 		$transaction.innerHTML = `
-		    <cite>${transaction.memo || ''}</cite>
-		    <code>${transaction.id}</code>
-		    <date>${transaction.created_at}</date>
+		    <cite
+			 title="${transaction.created_at}"
+			 created-at="${transaction.created_at}"
+			 transation-id="${transaction.id}"
+			>${transaction.memo}</cite>
 		`
 		this.appendChild($transaction)
 	    })
