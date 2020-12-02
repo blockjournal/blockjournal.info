@@ -34,13 +34,13 @@ class StellarAccountSend extends HTMLElement {
 	this.receiverPublicKey = this.accountDestination
 
 	let serverUrl
-	this.getAttribute('testnet') ? (
+	if (this.getAttribute('testnet')) {
 	    serverUrl = 'https://horizon-testnet.stellar.org'
 	    this.networkPassphrase = StellarSdk.Networks.TESTNET
-	) : (
+	} else {
 	    serverUrl = 'https://horizon.stellar.org'
 	    this.networkPassphrase = StellarSdk.Networks.PUBLIC
-	)
+	}
 
 	this.server = new StellarSdk.Server(serverUrl)
     }
@@ -59,7 +59,7 @@ class StellarAccountSend extends HTMLElement {
 	})
 					  .addOperation(StellarSdk.Operation.payment({
 					      destination: this.receiverPublicKey,
-					      asset: StellarSdk.Asset.native(),.
+					      asset: StellarSdk.Asset.native(),
 					      amount: this.amount,
 					  }))
 	// Make this transaction valid for the next 30 seconds only
