@@ -36,8 +36,10 @@ class StellarAccountSend extends HTMLElement {
 	let serverUrl
 	this.getAttribute('testnet') ? (
 	    serverUrl = 'https://horizon-testnet.stellar.org'
+	    this.networkPassphrase = StellarSdk.Networks.TESTNET
 	) : (
 	    serverUrl = 'https://horizon.stellar.org'
+	    this.networkPassphrase = StellarSdk.Networks.PUBLIC
 	)
 
 	this.server = new StellarSdk.Server(serverUrl)
@@ -53,22 +55,15 @@ class StellarAccountSend extends HTMLElement {
 
 	const transaction = new StellarSdk.TransactionBuilder(account, {
 	    fee,
-	    // Uncomment the following line to build transactions for the live network. Be
-	    // sure to also change the horizon hostname.
-	    // networkPassphrase: StellarSdk.Networks.PUBLIC,
-	    networkPassphrase: StellarSdk.Networks.TESTNET
+	    networkPassphrase: this.networkPassphrase
 	})
 					  .addOperation(StellarSdk.Operation.payment({
 					      destination: this.receiverPublicKey,
-					      asset: StellarSdk.Asset.native(),
-					      // Specify 350.1234567 lumens. Lumens are divisible to seven digits past
-					      // the decimal. They are represented in JS Stellar SDK in string format
-					      // to avoid errors from the use of the JavaScript Number data structure.
+					      asset: StellarSdk.Asset.native(),.
 					      amount: this.amount,
 					  }))
 	// Make this transaction valid for the next 30 seconds only
 					  .setTimeout(30)
-	// Uncomment to add a memo (https://www.stellar.org/developers/guides/concepts/transactions.html)
 					  .addMemo(StellarSdk.Memo.text(this.memo))
 					  .build();
 
