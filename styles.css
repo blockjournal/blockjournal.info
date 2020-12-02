@@ -1,0 +1,26 @@
+:root {
+    --space: 2rem;
+}
+
+html {
+    font-size: 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input {
+    margin-bottom: calc(var(--space) / 2);
+}
+
+stellar-account-transations header,
+stellar-account-send header {
+    padding-bottom: calc(var(--space) / 2);
+    font-style: italic;
+}
+
+stellar-account-transations article {
+    margin-bottom: calc(var(--space) / 2);
+}

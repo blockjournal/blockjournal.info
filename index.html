@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SiteTitle</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="./styles.css"/>
+  </head>
+
+  <body>
+      <header>
+	  <h1>Stellar lumens wall</h1>
+	  <p>Send a message on the stellar lumens blockchain</p>
+      </header>
+
+      <main>
+	  <h2>Send to account</h2>
+	  <stellar-account-send
+	      dev="true"
+	      amount="0.1"
+	      account-destination="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
+	  ></stellar-account-send>
+
+	  <h2>Transactions on account</h2>
+	  <stellar-account-transations
+	      dev="true"
+	      account="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
+	  ></stellar-account-transations>
+      </main>
+  </body>
+ 
+  <script src="https://unpkg.com/stellar-sdk@latest/dist/stellar-sdk.js"></script>
+  <script type="module">
+   import './index.js'
+  </script>
+</html>

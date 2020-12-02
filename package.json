@@ -1,0 +1,24 @@
+{
+  "name": "stellar-wall",
+  "version": "1.0.0",
+  "description": "Some web-components: - send a transaction to an account - list all transactions of an account",
+  "main": "index.js",
+  "dependencies": {
+    "eventsource": "^1.0.7",
+    "stellar-base": "^4.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/hugurp/stellar-wall.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/hugurp/stellar-wall/issues"
+  },
+  "homepage": "https://gitlab.com/hugurp/stellar-wall#readme"
+}
