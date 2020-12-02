@@ -69,9 +69,6 @@ button {
     max-width: var(--site-header-width);
     margin-bottom: 2rem;
 }
-.Site-header h1 {
-    text-align: center;
-}
 
 .Site-main {
     width: 100%;

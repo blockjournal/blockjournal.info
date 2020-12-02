@@ -4,7 +4,8 @@ class StellarAccountSend extends HTMLElement {
     }
 
     connectedCallback() {
-	this.accountDestination = this.getAttribute('account-destination') || ''
+	this.testnet = this.getAttribute('testnet')
+	this.accountDestination = this.getAttribute('account-id') || ''	
 	this.amount = this.getAttribute('amount') || 0
 	this.render()
     }
@@ -133,7 +134,7 @@ class StellarAccountSend extends HTMLElement {
 	$inputMemo.required = true
 
 	const $submitButton = document.createElement('button')
-	$submitButton.innerHTML = 'Send payment & post message'
+	$submitButton.innerHTML = `Send payment & post message ${ this.testnet ? '(testnet)' : ''}`
 	$submitButton.type = 'submit'
 	$submitButton.onclick = () => this.handleSubmit
 

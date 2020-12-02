@@ -6,7 +6,8 @@ export default class StellarAccountTransations extends HTMLElement {
 
     async connectedCallback() {
 	this.transactions = []
-	this.account = this.getAttribute('account') || ''
+	this.account = this.getAttribute('account-id') || ''
+	this.testnet = this.getAttribute('testnet')
 
 	let serverUrl
 	this.getAttribute('testnet') ? (
@@ -38,19 +39,26 @@ export default class StellarAccountTransations extends HTMLElement {
     render(transactions) {
 	this.innerHTML = ''
 
-	const $header = document.createElement('header')
-	$header.innerHTML = `(wall)`
-	$header.title = `Showing transaction messages for Stellar Lumens account ID: ${this.account}`
-
-	this.appendChild($header)
-
-	const $transactions = transactions
+	const sortedTransactions = transactions
 	    .sort((a, b) => {
 		return new Date(b.created_at) - new Date(a.created_at);
 	    })
 	    .filter(transaction => {
 		return transaction.memo
 	    })
+
+	const $header = document.createElement('header')
+	$header.innerHTML = `(wall ${ this.testnet ? 'on testnet' : ''})`
+
+	if (sortedTransactions.length) {
+	    $header.title = `Showing transaction messages for Stellar Lumens account ID: ${this.account}`
+	} else {
+	    $header.title = `No message to display yet... post the first message!`
+	}
+
+	this.appendChild($header)
+
+	const $transactions = sortedTransactions
 	    .forEach(transaction => {
 		let $transaction = document.createElement('article')
 		$transaction.innerHTML = `
