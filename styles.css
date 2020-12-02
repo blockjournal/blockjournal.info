@@ -69,6 +69,9 @@ button {
     max-width: var(--site-header-width);
     margin-bottom: 2rem;
 }
+.Site-header {
+    text-align: center;
+}
 
 .Site-main {
     width: 100%;
@@ -90,7 +93,7 @@ stellar-account-send header {
 }
 
 stellar-account-transactions header {
-    text-align: right;
+    text-align: center;
     cursor: help;
 }
 
