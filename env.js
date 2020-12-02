@@ -1,6 +1,6 @@
 const isDevelopment = window.location.origin.includes('localhost:')
 
-const accountProduction = 'GA7WQX4CZAEN7NQ4AVHUYGPI7CB5LQ4FVWRBFL2ANIEEIPP2PC3KUM26'
+const accountProduction = 'GDTDVL2ZKADQEQ2IP5OKQ5L6PMK5O7BXYAFPFPGE52IMADXAGCNQ5QXI'
 
 let config
 if (isDevelopment) {
