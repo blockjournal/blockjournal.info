@@ -22,3 +22,5 @@ Shell Commands:
 - https://www.stellar.org/developers/guides/concepts/test-net.html
 - https://developers.stellar.org/api
 - https://laboratory.stellar.org
+- https://www.stellar.org/developers/guides/concepts/list-of-operations.html#manage-data
+- https://www.stellar.org/developers/guides/concepts/transactions.html

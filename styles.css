@@ -26,7 +26,8 @@ body {
 }
 
 html,
-body {
+body,
+.Site {
     height: 100%;
 }
 
