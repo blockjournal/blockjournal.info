@@ -1,32 +1,65 @@
+
 export default class StellarAccountTransations extends HTMLElement {
-    constructor() {
-	super()
-	console.log('constructor')
+    static get observedAttributes() {
+	return ['account-id', 'testnet']
     }
 
-    async connectedCallback() {
+    attributeChangedCallback(name, oldValue, newValue) {
+	if (name === "account-id" && oldValue != newValue) {
+	    this.disconnectData()
+	    this.connectData()
+	}
+    }
+
+    getInitialState = () => {
 	this.transactions = []
 	this.account = this.getAttribute('account-id') || ''
 	this.testnet = this.getAttribute('testnet')
 
-	let serverUrl
 	this.getAttribute('testnet') ? (
-	    serverUrl = 'https://horizon-testnet.stellar.org'
+	    this.serverUrl = 'https://horizon-testnet.stellar.org'
 	) : (
-	    serverUrl = 'https://horizon.stellar.org'
+	    this.serverUrl = 'https://horizon.stellar.org'
 	)
-
-	console.log(serverUrl)
-	this.server = new StellarSdk.Server(serverUrl)
-	this.connectAccountTransactions(this.handleNewTransaction)
     }
 
-    handleNewTransaction = (txResponse) => {
-	this.transactions.push(txResponse)
-	this.render(this.transactions)
+    connectData = async () => {
+	this.getInitialState()
+	if (!this.serverUrl || !this.account) return
+
+	this.server = new StellarSdk.Server(this.serverUrl)
+	const tx = await this.getAccountTransactions()
+			     .then(transactions => {
+				 this.connectAccountTransactions(this.handleNewTransaction)
+			     }).catch(error => {
+				 console.log('Error connecting data', error)
+			     })
+    }
+
+    disconnectData = () => {
+	this.server = null
+	this.transactions = null
+    }
+
+    getAccountTransactions = async () => {
+	var lastCursor = 0
+	let response 
+	try {
+	    response =  await this.server.transactions()
+				      .forAccount(this.account)
+				      .cursor(lastCursor)
+				      .call()
+	} catch (error) {
+	    console.log(`Error getting transactions for account: ${this.account}`, error)
+	    return
+	}
+
+	if (!response) return []
+	return response.records
     }
 
     connectAccountTransactions(onmessageCallback) {
+	this.transactions = []
 	var lastCursor = 0
 	this.server.transactions()
 	    .forAccount(this.account)
@@ -35,10 +68,15 @@ export default class StellarAccountTransations extends HTMLElement {
 		onmessage: onmessageCallback
 	    })
     }
-    
-    render(transactions) {
-	this.innerHTML = ''
 
+    handleNewTransaction = (tx) => {
+	this.transactions.push(tx)
+	this.render()
+    }
+    
+    render() {
+	this.innerHTML = ''
+	const transactions = this.transactions
 	const sortedTransactions = transactions
 	    .sort((a, b) => {
 		return new Date(b.created_at) - new Date(a.created_at);
@@ -58,7 +96,8 @@ export default class StellarAccountTransations extends HTMLElement {
 
 	this.appendChild($header)
 
-	const $transactions = sortedTransactions
+	const $transactions = document.createElement('main')
+	sortedTransactions
 	    .forEach(transaction => {
 		let $transaction = document.createElement('article')
 		$transaction.innerHTML = `
@@ -68,8 +107,9 @@ export default class StellarAccountTransations extends HTMLElement {
 			 transation-id="${transaction.id}"
 			>${transaction.memo}</cite>
 		`
-		this.appendChild($transaction)
+		$transactions.appendChild($transaction)
 	    })
+	this.appendChild($transactions)
 	
     }
 }

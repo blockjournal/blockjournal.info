@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Stellar Wall</title>
+	<meta name="description" content="Publish a forever lasting message to the World on the Stellar Lumens Blockchain. What to say?">
+	<link rel="stylesheet" href="../styles.css"/>
+    </head>
+
+    <body>
+	<site-container class="Site">
+	    <header class="Site-header">
+		<h1>Lumens wall</h1>
+		<p>Publish a message on this site, with the Stellar Lumens blockchain.</p>
+	    </header>
+
+	    <main class="Site-main">
+		<section>
+		    <details>
+			<summary>
+			    <button>Publish a message on the wall</button>
+			</summary>
+			<stellar-account-send
+			    testnet="true"
+			    amount="0.1"
+			    account-id="GBGXXFNZTQOI5PP5W5E2ZXLQ7DIHOECXLJU2U7K5QAK32II3QUMOYPOH"
+			></stellar-account-send>
+		    </details>
+		</section>
+
+		<section>
+		    <stellar-account-transactions
+			testnet="true"
+			account-id=""
+		    ></stellar-account-transactions>
+		</section>
+	    </main>
+	</site-container>
+
+	<script type="module">
+	 import {setAccountFromUrl} from '../index.js'
+	 const $element = document.querySelector('stellar-account-transactions')
+	 setAccountFromUrl($element, window)
+	</script>
+    </body>
+</html>
